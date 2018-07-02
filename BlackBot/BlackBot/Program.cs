@@ -5,18 +5,23 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Threading;
+using BlackBot.Modules;
 
 namespace BlackBot
 {
     public class Program
     {
         static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
-  
         private DiscordSocketClient _client;
         private CommandService _commands;
         private IServiceProvider _services;
+        private readonly Func<SocketMessage, Task> source;
+        public static DataLoad data = new DataLoad();
         public async Task RunBotAsync()
         {
+            data.Load();
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             _client = new DiscordSocketClient();
             _commands = new CommandService();
 
@@ -25,7 +30,6 @@ namespace BlackBot
                 .AddSingleton(_commands)
                 .BuildServiceProvider();
             string botToken = "NDQ2Mzg1NTQxMDg5MzI5MTUz.Dd4WWg.U8Ab7uy-m0HC_aYfiMHHXFQL6SA";
-
             _client.Log += Log;
             _client.UserJoined += AnnounceUserJoined;
             await RegisterCommandsAsync();
@@ -52,8 +56,7 @@ namespace BlackBot
             _client.MessageReceived += HandleCommandAsync;
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
         }
-
-        private async Task HandleCommandAsync(SocketMessage arg)
+        public async Task HandleCommandAsync(SocketMessage arg)
         {
             var message = arg as SocketUserMessage;
             if (message is null || message.Author.IsBot)
@@ -61,7 +64,13 @@ namespace BlackBot
                 return;
             }
             int argPos = 0;
-            if(message.HasStringPrefix("b!", ref argPos)||message.HasMentionPrefix(_client.CurrentUser, ref argPos))
+            var context2 = new SocketCommandContext(_client, message);
+            Console.WriteLine(context2.Channel.Id);
+            if (message.Channel.Id == 446817453868318743)
+            {
+                await ((ISocketMessageChannel)_client.GetChannel(446797500859285527)).SendMessageAsync(message.Content);
+            }
+            if (message.HasStringPrefix("b!", ref argPos)||message.HasMentionPrefix(_client.CurrentUser, ref argPos))
             {
                 var context = new SocketCommandContext(_client, message);
                 var result = await _commands.ExecuteAsync(context, argPos, _services);
@@ -69,8 +78,14 @@ namespace BlackBot
                 {
                     Console.WriteLine(result.ErrorReason);
                 }
+                
             }
 
+        }
+        static void OnProcessExit(object sender, EventArgs e)
+        {
+            Console.WriteLine("Saving data");
+            data.Save();
         }
     }
 }

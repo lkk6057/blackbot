@@ -1,0 +1,11 @@
+c:\users\lkk60\source\repos\BlackBot\BlackBot\bin\Debug\netcoreapp2.0\BlackBot.deps.json
+c:\users\lkk60\source\repos\BlackBot\BlackBot\bin\Debug\netcoreapp2.0\BlackBot.runtimeconfig.json
+c:\users\lkk60\source\repos\BlackBot\BlackBot\bin\Debug\netcoreapp2.0\BlackBot.runtimeconfig.dev.json
+c:\users\lkk60\source\repos\BlackBot\BlackBot\bin\Debug\netcoreapp2.0\BlackBot.dll
+c:\users\lkk60\source\repos\BlackBot\BlackBot\obj\Debug\netcoreapp2.0\BlackBot.csproj.CoreCompileInputs.cache
+c:\users\lkk60\source\repos\BlackBot\BlackBot\obj\Debug\netcoreapp2.0\BlackBot.AssemblyInfoInputs.cache
+c:\users\lkk60\source\repos\BlackBot\BlackBot\obj\Debug\netcoreapp2.0\BlackBot.AssemblyInfo.cs
+c:\users\lkk60\source\repos\BlackBot\BlackBot\bin\Debug\netcoreapp2.0\BlackBot.pdb
+c:\users\lkk60\source\repos\BlackBot\BlackBot\obj\Debug\netcoreapp2.0\BlackBot.dll
+c:\users\lkk60\source\repos\BlackBot\BlackBot\obj\Debug\netcoreapp2.0\BlackBot.pdb
+C:\Users\lkk60\source\repos\BlackBot\BlackBot\obj\Debug\netcoreapp2.0\BlackBot.csprojAssemblyReference.cache
