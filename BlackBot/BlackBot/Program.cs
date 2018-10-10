@@ -29,7 +29,7 @@ namespace BlackBot
                 .AddSingleton(_client)
                 .AddSingleton(_commands)
                 .BuildServiceProvider();
-            string botToken = "NDQ2Mzg1NTQxMDg5MzI5MTUz.Dd4WWg.U8Ab7uy-m0HC_aYfiMHHXFQL6SA";
+            string botToken = "[REDACTED]";
             _client.Log += Log;
             _client.UserJoined += AnnounceUserJoined;
             await RegisterCommandsAsync();
